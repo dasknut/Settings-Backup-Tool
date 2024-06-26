@@ -61,7 +61,7 @@ namespace BrowserDataBackup
         {
             string firefoxProfilesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 @"Mozilla\Firefox\Profiles");
-            string[] directories = Directory.GetDirectories(firefoxProfilesPath, "*.default-release");
+            string[] directories = Directory.GetDirectories(firefoxProfilesPath);
 
             if (directories.Length > 0)
             {
