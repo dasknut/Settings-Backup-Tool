@@ -13,6 +13,9 @@ namespace BrowserDataBackup
             BackupEdgeFavorites();
             BackupChromeFavorites();
             BackupFirefoxFavorites();
+            BackupOperaFavorites();
+            BackupOutlookTextbausteine();
+            BackupWordTextbausteine();
             // BackupPasswords();
             // BackupWordOutlookTextbausteine();
 
@@ -83,6 +86,60 @@ namespace BrowserDataBackup
             else
             {
                 Console.WriteLine("Firefox profile not found.");
+            }
+        }
+
+        static void BackupOperaFavorites()
+        {
+            string operaFavoritesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                @"Opera Software\Opera Stable\Bookmarks");
+            string backupPath = @"C:\Backup\Opera\Bookmarks";
+
+            if (File.Exists(operaFavoritesPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(backupPath));
+                File.Copy(operaFavoritesPath, backupPath, true);
+                Console.WriteLine("Opera favorites backed up.");
+            }
+            else
+            {
+                Console.WriteLine("Opera favorites file not found.");
+            }
+        }
+
+        static void BackupOutlookTextbausteine()
+        {
+            string outlookTemplatesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                @"Microsoft\Templates\NormalEmail.dotm");
+            string backupPath = @"C:\Backup\Outlook\NormalEmail.dotm";
+
+            if (File.Exists(outlookTemplatesPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(backupPath));
+                File.Copy(outlookTemplatesPath, backupPath, true);
+                Console.WriteLine("Outlook Textbausteine backed up.");
+            }
+            else
+            {
+                Console.WriteLine("Outlook Textbausteine file not found.");
+            }
+        }
+
+        static void BackupWordTextbausteine()
+        {
+            string wordTemplatesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                @"Microsoft\Templates\Normal.dotm");
+            string backupPath = @"C:\Backup\Word\Normal.dotm";
+
+            if (File.Exists(wordTemplatesPath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(backupPath));
+                File.Copy(wordTemplatesPath, backupPath, true);
+                Console.WriteLine("Word Textbausteine backed up.");
+            }
+            else
+            {
+                Console.WriteLine("Word Textbausteine file not found.");
             }
         }
     }
